@@ -5,8 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Workshop</title>
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+      </style>
 </head>
 <body>
-    
+    <script src="js/Lib/three.min.js"></script>
+    <script src="js/Lib/stats.min.js"></script>
+    <script src="js/WorkShop.js"></script>
+    <script src="js/gfx_engine.js"></script>
+    <script src="js/game.js"></script>
+    <script>
+        WorkShop.start({
+            debug_mode: true,
+            high_performance: false,
+            gfx_engine: {
+            },
+            game: {
+            }
+          });
+    </script>
 </body>
 </html>
