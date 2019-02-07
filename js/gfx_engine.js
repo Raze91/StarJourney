@@ -1,7 +1,7 @@
 WorkShop.gfx_engine = {
 
-    init: function(config) {
-  
+  init: function (config) {
+
     // --- scene
     this.scene = new THREE.Scene();
 
@@ -12,10 +12,15 @@ WorkShop.gfx_engine = {
     // --- camera
     const aspect = window.innerWidth / window.innerHeight;
     this.camera = new THREE.PerspectiveCamera(fov, aspect, 1, far_plane);
-    this.camera.position.set(0,0,50)
+    this.camera.position.set(0, 0, 50)
     this.scene.add(this.camera);
 
     const perf = WorkShop.configuration.high_performance || true;
+
+
+    const light = new THREE.DirectionalLight(0xffffff);
+    light.position.set(0, 0, 10);
+    WorkShop.gfx_engine.scene.add(light);
 
     // --- renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: perf });
@@ -35,22 +40,21 @@ WorkShop.gfx_engine = {
       document.body.appendChild(this.stats.dom);
     }
 
-    window.requestAnimFrame = (function() {
+    window.requestAnimFrame = (function () {
       return (
         window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
-        function(callback) {
+        function (callback) {
           window.setTimeout(callback, 1000 / 60);
         }
       );
     })();
 
-      console.log('gfx engine ready');
-    },
-    update() {
-    
-        this.renderer.render(this.scene, this.camera);
-    }
-  };
-  
+    console.log('gfx engine ready');
+  },
+  update() {
+
+    this.renderer.render(this.scene, this.camera);
+  }
+};
