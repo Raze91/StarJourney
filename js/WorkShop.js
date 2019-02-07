@@ -8,13 +8,32 @@ const WorkShop = {
     }
 
     this.configuration = config;
-    this.gfx_engine.init(config.gfx_engine);
 
-    this.game.init(config.game);
+    function gameIsStarted() {
+      WorkShop.gfx_engine.init(config.gfx_engine);
 
-    this.update();
+      WorkShop.game.init(config.game);
 
-    console.log('WorkShop is started!');
+      WorkShop.update();
+
+      console.log('WorkShop is started!');
+    }
+    const blocker = document.getElementById('blocker');
+    const instructions = document.getElementById('instructions');
+    //const instructions2 = document.getElementById('instructions_2')
+
+    const onKeyDown = function (event) {
+      switch (event.keyCode) {
+        case 13: // enter
+          instructions.style.visibility = 'hidden';
+          //instructions2.style.visibility = 'hidden'
+          blocker.style.visibility = 'hidden';
+          gameIsStarted()
+          break;;
+      }
+    };
+    document.addEventListener('keydown', onKeyDown, false);
+
   },
   update: function () {
     requestAnimFrame(WorkShop.update);
@@ -25,5 +44,11 @@ const WorkShop = {
     WorkShop.gfx_engine.update();
 
     if (WorkShop.configuration.debug_mode) WorkShop.gfx_engine.stats.end();
+
+    if(WorkShop.game.player.lives <= 0){
+      //instructions2.style.visibility = 'visible';
+      //blocker.style.visibility = 'visible';
+    }
   }
+
 };
