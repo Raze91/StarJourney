@@ -40,32 +40,32 @@ WorkShop.game = {
 
         // Asteroid 1
         loader.load('./assets/source/asteroid.fbx', function (object) {
+            object.scale.set(0.03, 0.03, 0.03)
             WorkShop.game.asteroid = object;
-            WorkShop.game.asteroid.scale.set(0.03, 0.03, 0.03)
             WorkShop.gfx_engine.scene.add(WorkShop.game.asteroid);
         });
 
         // Asteroid 2
         loader.load('./assets/source/asteroid.fbx', function (object) {
+            object.scale.set(0.03, 0.03, 0.03);
             WorkShop.game.asteroid_2 = object;
-            WorkShop.game.asteroid_2.scale.set(0.03, 0.03, 0.03);
             WorkShop.gfx_engine.scene.add(WorkShop.game.asteroid_2);
         });
 
         // Asteroid 3
         loader.load('./assets/source/asteroid.fbx', function (object) {
+            object.scale.set(0.03, 0.03, 0.03);
             WorkShop.game.asteroid_3 = object;
-            WorkShop.game.asteroid_3.scale.set(0.03, 0.03, 0.03);
             WorkShop.gfx_engine.scene.add(WorkShop.game.asteroid_3);
         });
 
         // Ship 
         loader.load('./assets/source/Ship.fbx', function (object) {
+            object.scale.set(0.002, 0.002, 0.002);
+            object.rotateX(THREE.Math.degToRad(70));
+            object.rotateY(THREE.Math.degToRad(89.6));
+            object.position.set(0, -30, 0);
             WorkShop.game.ship = object;
-            WorkShop.game.ship.scale.set(0.002, 0.002, 0.002);
-            WorkShop.game.ship.rotateX(THREE.Math.degToRad(70));
-            WorkShop.game.ship.rotateY(THREE.Math.degToRad(89.6));
-            WorkShop.game.ship.position.set(0, -30, 0);
             WorkShop.gfx_engine.scene.add(WorkShop.game.ship);
             console.log('ship is added');
         });
@@ -94,8 +94,10 @@ WorkShop.game = {
                 //console.log('droite');
                 break;
             case 27: // Echap
-                WorkShop.setPause();
-                console.log('echap')
+                if(WorkShop.GameOver == false){
+                    WorkShop.setPause();
+                    console.log('echap');
+                }
         }
     },
     onKeyUp: function (event) {
@@ -121,7 +123,7 @@ WorkShop.game = {
     update: function () {
 
         WorkShop.IsGameOver();
-        
+
          this.player.score_div.innerText = 'Score : ' + this.player.score;
 
          this.player.lives_div.innerText = 'Vies : ' + this.player.lives;

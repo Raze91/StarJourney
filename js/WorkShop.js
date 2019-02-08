@@ -58,11 +58,6 @@ const WorkShop = {
     }
 
     if (WorkShop.configuration.debug_mode) WorkShop.gfx_engine.stats.end();
-
-    if (WorkShop.game.player.lives <= 0) {
-      //instructions_2.style.visibility = 'visible';
-      //blocker.style.visibility = 'visible';
-    }
   }
 
 };
