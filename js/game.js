@@ -120,6 +120,8 @@ WorkShop.game = {
 
     update: function () {
 
+        WorkShop.IsGameOver();
+        
          this.player.score_div.innerText = 'Score : ' + this.player.score;
 
          this.player.lives_div.innerText = 'Vies : ' + this.player.lives;
@@ -180,6 +182,11 @@ WorkShop.game = {
          if (this.asteroid_3 != null && this.asteroid_3.position.y <= -50) {
              this.player.score += 10;
              this.asteroid_3.position.set(this.getRandomArbitrary(-70, 70), this.getRandomArbitrary(50, 70), 0)
+         }
+
+         if(this.player.lives <= 0){
+             //WorkShop.pause = true
+             WorkShop.GameOver = true;
          }
 
     },

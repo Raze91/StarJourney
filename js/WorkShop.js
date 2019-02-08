@@ -1,5 +1,6 @@
 const WorkShop = {
   pause: true,
+  GameOver: false,
   configuration: {},
 
   start: function (config) {
@@ -22,7 +23,7 @@ const WorkShop = {
 
     //const instructions_2 = document.getElementById('instructions_2')
 
-  
+
 
   },
 
@@ -40,12 +41,18 @@ const WorkShop = {
       this.instructions.style.display = '';
     }
   },
+  IsGameOver: function () {
+    if (this.GameOver == true) {
+      this.pause = true;
+      this.blocker.style.display = '';
+    }
+  },
   update: function () {
     requestAnimFrame(WorkShop.update);
 
     if (WorkShop.configuration.debug_mode) WorkShop.gfx_engine.stats.begin();
 
-    if(WorkShop.pause == false){
+    if (WorkShop.pause == false) {
       WorkShop.game.update();
       WorkShop.gfx_engine.update();
     }
