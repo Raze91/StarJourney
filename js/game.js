@@ -10,6 +10,7 @@ WorkShop.game = {
         lives_div: 0,
         score: 0,
         score_div: 0,
+        score_fin: 0,
     },
 
     init: function (config) {
@@ -18,6 +19,7 @@ WorkShop.game = {
 
         this.player.lives_div = document.getElementById('vies');
 
+        this.player.score_fin = document.getElementById('score_fin');
 
         const scene = WorkShop.gfx_engine.scene;
 
@@ -113,6 +115,8 @@ WorkShop.game = {
 
         this.player.lives_div.innerText = 'Vies : ' + this.player.lives;
 
+        this.player.score_fin.innerText = 'Votre Score : ' + this.player.score;
+
         if (WorkShop.game.moveLeft == true) {
             this.ship.translateZ(-1);
         }
@@ -130,13 +134,13 @@ WorkShop.game = {
         }
 
         if (this.asteroid != null && this.asteroid.position.y > -50) {
-            this.asteroid.translateY(-2);
+            this.asteroid.translateY(-1);
         }
         if (this.asteroid_2 != null && this.asteroid_2.position.y > -50) {
-            this.asteroid_2.translateY(-2);
+            this.asteroid_2.translateY(-1);
         }
         if (this.asteroid_3 != null && this.asteroid_3.position.y > -50) {
-            this.asteroid_3.translateY(-2);
+            this.asteroid_3.translateY(-1);
         }
 
         if (this.ship != null &&
