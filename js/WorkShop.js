@@ -1,4 +1,5 @@
 const WorkShop = {
+  pause: true,
   configuration: {},
 
   start: function (config) {
@@ -8,43 +9,50 @@ const WorkShop = {
     }
 
     this.configuration = config;
+    this.blocker = document.getElementById('blocker');
+    this.instructions = document.getElementById('instructions');
 
-    function gameIsStarted() {
-      WorkShop.gfx_engine.init(config.gfx_engine);
+    WorkShop.gfx_engine.init(config.gfx_engine);
 
-      WorkShop.game.init(config.game);
+    WorkShop.game.init(config.game);
 
-      WorkShop.update();
+    WorkShop.update();
 
-      console.log('WorkShop is started!');
-    }
-    const blocker = document.getElementById('blocker');
-    const instructions = document.getElementById('instructions');
+    console.log('WorkShop is started!');
+
     //const instructions_2 = document.getElementById('instructions_2')
 
-    const onKeyDown = function (event) {
-      switch (event.keyCode) {
-        case 13: // enter
-          instructions.style.visibility = 'hidden';
-          blocker.style.visibility = 'hidden';
-          gameIsStarted()
-          break;;
-      }
-    };
-    document.addEventListener('keydown', onKeyDown, false);
+  
 
+  },
+
+  setPause: function () {
+    if (this.pause) {
+      this.pause = false;
+
+      this.instructions.style.display = 'none';
+      this.blocker.style.display = 'none';
+    }
+    else {
+      this.pause = true;
+
+      this.blocker.style.display = 'block';
+      this.instructions.style.display = '';
+    }
   },
   update: function () {
     requestAnimFrame(WorkShop.update);
 
     if (WorkShop.configuration.debug_mode) WorkShop.gfx_engine.stats.begin();
 
-    WorkShop.game.update();
-    WorkShop.gfx_engine.update();
+    if(WorkShop.pause == false){
+      WorkShop.game.update();
+      WorkShop.gfx_engine.update();
+    }
 
     if (WorkShop.configuration.debug_mode) WorkShop.gfx_engine.stats.end();
 
-    if(WorkShop.game.player.lives <= 0){
+    if (WorkShop.game.player.lives <= 0) {
       //instructions_2.style.visibility = 'visible';
       //blocker.style.visibility = 'visible';
     }

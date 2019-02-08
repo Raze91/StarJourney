@@ -1,8 +1,8 @@
 WorkShop.game = {
     asteroids: [],
     field: {
-        width: 180,
-        height: 90
+        width: 500,
+        height: 300
     },
 
     player: {
@@ -32,7 +32,7 @@ WorkShop.game = {
             let plane_material = new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture });
             let plane_geometry = new THREE.PlaneGeometry(WorkShop.game.field.width, WorkShop.game.field.height, 32);
             const plane = new THREE.Mesh(plane_geometry, plane_material);
-            plane.position.set(0, 0, -5)
+            plane.position.set(0, 0, -100)
             scene.add(plane);
         });
 
@@ -93,6 +93,9 @@ WorkShop.game = {
                 WorkShop.game.ship.position.set(70, -30, 0)
                 //console.log('droite');
                 break;
+            case 27: // Echap
+                WorkShop.setPause();
+                console.log('echap')
         }
     },
     onKeyUp: function (event) {
