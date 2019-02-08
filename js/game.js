@@ -63,6 +63,14 @@ WorkShop.game = {
             WorkShop.game.asteroid_3 = object;
             WorkShop.gfx_engine.scene.add(WorkShop.game.asteroid_3);
         });
+        
+        // Asteroid 4
+        loader.load('./assets/source/asteroid.fbx', function (object) {
+            object.scale.set(0.03, 0.03, 0.03);
+            object.position.set(-50, 70, 0);
+            WorkShop.game.asteroid_4 = object;
+            WorkShop.gfx_engine.scene.add(WorkShop.game.asteroid_4);
+        });
 
         // Ship 
         loader.load('./assets/source/Ship.fbx', function (object) {
@@ -125,11 +133,11 @@ WorkShop.game = {
             this.ship.translateZ(1);
         }
 
-        if (this.ship.position.x <= -70) {
+        if (this.ship.position.x <= -90) {
             WorkShop.game.moveLeft = false;
         }
 
-        if (this.ship.position.x >= 70) {
+        if (this.ship.position.x >= 90) {
             WorkShop.game.moveRight = false;
         }
 
@@ -142,6 +150,9 @@ WorkShop.game = {
         if (this.asteroid_3 != null && this.asteroid_3.position.y > -50) {
             this.asteroid_3.translateY(-1);
         }
+        if(this.asteroid_4 != null && this.asteroid_4.position.y > -50) {
+            this.asteroid_4.translateY(-1);
+        }
 
         if (this.ship != null &&
             this.asteroid != null &&
@@ -150,7 +161,7 @@ WorkShop.game = {
             this.asteroid.position.y - 6 < this.ship.position.y + 9 &&
             this.asteroid.position.y + 6 > this.ship.position.y - 9) {
             this.player.lives -= 1;
-            this.asteroid.position.set(this.getRandomArbitrary(-70, 70), this.getRandomArbitrary(50, 70), 0);
+            this.asteroid.position.set(this.getRandomArbitrary(-90, 90), this.getRandomArbitrary(50, 70), 0);
         }
         if (this.ship != null &&
             this.asteroid_2 != null &&
@@ -159,7 +170,7 @@ WorkShop.game = {
             this.asteroid_2.position.y + 6 < this.ship.position.y + 9 &&
             this.asteroid_2.position.y + 6 > this.ship.position.y - 9) {
             this.player.lives -= 1;
-            this.asteroid_2.position.set(this.getRandomArbitrary(-70, 70), this.getRandomArbitrary(50, 70), 0)
+            this.asteroid_2.position.set(this.getRandomArbitrary(-90, 90), this.getRandomArbitrary(50, 70), 0)
         }
         if (this.ship != null &&
             this.asteroid_3 != null &&
@@ -168,20 +179,33 @@ WorkShop.game = {
             this.asteroid_3.position.y + 6 < this.ship.position.y + 9 &&
             this.asteroid_3.position.y + 6 > this.ship.position.y - 9) {
             this.player.lives -= 1;
-            this.asteroid_3.position.set(this.getRandomArbitrary(-70, 70), this.getRandomArbitrary(50, 70), 0)
+            this.asteroid_3.position.set(this.getRandomArbitrary(-90, 90), this.getRandomArbitrary(50, 70), 0)
+        }
+        if (this.ship != null &&
+            this.asteroid_4 != null &&
+            this.asteroid_4.position.x - 6 < this.ship.position.x + 5 &&
+            this.asteroid_4.position.x + 6 > this.ship.position.x - 5 &&
+            this.asteroid_4.position.y + 6 < this.ship.position.y + 9 &&
+            this.asteroid_4.position.y + 6 > this.ship.position.y - 9) {
+            this.player.lives -= 1;
+            this.asteroid_4.position.set(this.getRandomArbitrary(-90, 90), this.getRandomArbitrary(50, 70), 0)
         }
 
         if (this.asteroid != null && this.asteroid.position.y <= -50) {
             this.player.score += 10;
-            this.asteroid.position.set(this.getRandomArbitrary(-70, 70), this.getRandomArbitrary(50, 70), 0);
+            this.asteroid.position.set(this.getRandomArbitrary(-90, 90), this.getRandomArbitrary(50, 70), 0);
         }
         if (this.asteroid_2 != null && this.asteroid_2.position.y <= -50) {
             this.player.score += 10;
-            this.asteroid_2.position.set(this.getRandomArbitrary(-70, 70), this.getRandomArbitrary(50, 70), 0)
+            this.asteroid_2.position.set(this.getRandomArbitrary(-90, 90), this.getRandomArbitrary(50, 70), 0)
         }
         if (this.asteroid_3 != null && this.asteroid_3.position.y <= -50) {
             this.player.score += 10;
-            this.asteroid_3.position.set(this.getRandomArbitrary(-70, 70), this.getRandomArbitrary(50, 70), 0)
+            this.asteroid_3.position.set(this.getRandomArbitrary(-90, 90), this.getRandomArbitrary(50, 70), 0)
+        }
+        if (this.asteroid_4 != null && this.asteroid_4.position.y <= -50) {
+            this.player.score += 10;
+            this.asteroid_4.position.set(this.getRandomArbitrary(-90, 90), this.getRandomArbitrary(50, 70), 0)
         }
 
         if (this.player.lives <= 0) {

@@ -12,7 +12,7 @@ WorkShop.gfx_engine = {
     // --- camera
     const aspect = window.innerWidth / window.innerHeight;
     this.camera = new THREE.PerspectiveCamera(fov, aspect, 1, far_plane);
-    this.camera.position.set(0, 0, 50)
+    this.camera.position.set(0, 0, 100)
     this.scene.add(this.camera);
 
     const perf = WorkShop.configuration.high_performance || true;
